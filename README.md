@@ -1,3 +1,3 @@
 # tarea1-Sis.Operativos
-plan.txt
+plan.txt:
 Plan de actividades diciocheras
