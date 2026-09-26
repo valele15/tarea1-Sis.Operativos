@@ -23,3 +23,16 @@ epara esta parte segui el formato de plan.txt osea lo fui hjaciendo como en espe
 lo de los numeros aleatorios se hace con srand que hace que permita asignarle un tiempo en este caso le agregamos tiempo nulo para que sea mas aleatorio en vez de que salga el mismo numero a cada rato. Tambien en el codigo abrimos ek plan.txt para poder leerlo y seguir el formato. guardamos todo en una misma linea que luego vaa a tner una estructura como de una lista.
 para el tiempo simplemente se ahcen ambos casos necesrio el que es vacio y el viene con un tiempo incluido 
 
+
+
+
+
+
+
+
+
+generador.py:
+
+creamos el generador.py para poder usarlo como un archiv}o de datos.osea un  planificador de hasta 10,000 actividades.
+
+
