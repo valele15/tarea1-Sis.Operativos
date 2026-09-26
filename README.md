@@ -17,11 +17,6 @@ Algo asi:
 COmo una especie de lista y separarlo en vex dde hacerlo en una linea
 *si el tiempo viene vacio ,asignar un valor aleatoria entre 100 y 5000 ms
 
-plannuev.txt:
-(este codigo solo debo actualizarlo en el mismo plan.txt)
-
-
-actualizamos plan.txt debido a que necesitamos separar cada linea.para esto se guarda cada actividad ej un vector llamado actividafdes. cad actividad tendra su ID,nombre,tiempo y dependencias. recorremos las actividades y las relacionamos con su respectiva dependencia.asi con esto cada nodo del DAG se puede representar con su relacion ,dodne el nodo va a ser su actividad y cada flceha indica que activifad debe terminar antes de que la otra pueda ejecutarse.
 
 
 
