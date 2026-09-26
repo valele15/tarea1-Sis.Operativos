@@ -1,0 +1,153 @@
+#include <iostream>
+#include <fstream>
+#include <string>
+#include <vector>
+#include <cstdlib>
+#include <ctime>
+
+using namespace std;
+
+struct Actividad {
+    string id;
+    string nombre;
+    int tiempo;
+    vector<string> dependencias;
+};
+
+int main() {
+
+    srand(time(NULL));
+
+    ifstream archivo("plan.txt");
+
+    if (!archivo.is_open()) {
+        cout << "No se pudo abrir plan.txt" << endl;
+        return 1;
+    }
+
+    string linea;
+
+    // Guardamos todas las actividades
+    vector<Actividad> actividades;
+
+    // Leemos el archivo línea por línea
+    while (getline(archivo, linea)) {
+
+        if (linea.empty()) {
+            continue;
+        }
+
+        // Separamos la línea en sus cuatro campos
+        vector<string> campos;
+
+        size_t inicio = 0;
+
+        while (true) {
+
+            size_t posicion = linea.find(':', inicio);
+
+            if (posicion == string::npos) {
+                campos.push_back(linea.substr(inicio));
+                break;
+            }
+
+            campos.push_back(
+                linea.substr(inicio, posicion - inicio)
+            );
+
+            inicio = posicion + 1;
+        }
+
+        // Creamos una actividad
+        Actividad actividad;
+
+        // ID
+        actividad.id = campos[0];
+
+        // Nombre
+        actividad.nombre = campos[1];
+
+        // Tiempo
+        if (campos[2].empty()) {
+            actividad.tiempo = 100 + rand() % 4901;
+        } else {
+            actividad.tiempo = stoi(campos[2]);
+        }
+
+        // Dependencias
+        if (!campos[3].empty()) {
+
+            size_t inicioDependencia = 0;
+
+            while (true) {
+
+                size_t posicion =
+                    campos[3].find(',', inicioDependencia);
+
+                if (posicion == string::npos) {
+
+                    actividad.dependencias.push_back(
+                        campos[3].substr(inicioDependencia)
+                    );
+
+                    break;
+                }
+
+                actividad.dependencias.push_back(
+                    campos[3].substr(
+                        inicioDependencia,
+                        posicion - inicioDependencia
+                    )
+                );
+
+                inicioDependencia = posicion + 1;
+            }
+        }
+
+        // Guardamos la actividad
+        actividades.push_back(actividad);
+    }
+
+    archivo.close();
+
+    // Mostramos las actividades leídas
+    cout << "ACTIVIDADES:" << endl;
+    cout << "-------------" << endl;
+
+    for (Actividad actividad : actividades) {
+
+        cout << "ID: " << actividad.id << endl;
+        cout << "Nombre: " << actividad.nombre << endl;
+        cout << "Tiempo: " << actividad.tiempo << " ms" << endl;
+
+        cout << "Dependencias: ";
+
+        if (actividad.dependencias.empty()) {
+            cout << "ninguna";
+        } else {
+
+            for (string dependencia : actividad.dependencias) {
+                cout << dependencia << " ";
+            }
+        }
+
+        cout << endl << endl;
+    }
+
+    // Mostramos las relaciones del DAG
+    cout << "DAG:" << endl;
+    cout << "----" << endl;
+
+    for (int i = 0; i < actividades.size(); i++) {
+
+        for (string dependencia : actividades[i].dependencias) {
+
+            cout << dependencia
+                 << " -> "
+                 << actividades[i].id
+                 << endl;
+        }
+    }
+
+    return 0;
+}
