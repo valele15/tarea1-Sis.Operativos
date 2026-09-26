@@ -17,6 +17,14 @@ Algo asi:
 COmo una especie de lista y separarlo en vex dde hacerlo en una linea
 *si el tiempo viene vacio ,asignar un valor aleatoria entre 100 y 5000 ms
 
+plannuev.txt:
+(este codigo solo debo actualizarlo en el mismo plan.txt)
+
+
+actualizamos plan.txt debido a que necesitamos separar cada linea.para esto se guarda cada actividad ej un vector llamado actividafdes. cad actividad tendra su ID,nombre,tiempo y dependencias. recorremos las actividades y las relacionamos con su respectiva dependencia.asi con esto cada nodo del DAG se puede representar con su relacion ,dodne el nodo va a ser su actividad y cada flceha indica que activifad debe terminar antes de que la otra pueda ejecutarse.
+
+
+
 planificador.cpp :
 
 epara esta parte segui el formato de plan.txt osea lo fui hjaciendo como en especies de columnas y deje los datos como colocados de esa manera. ID : Nombre : tiempo_ms : dependencias   de esta forma.  Para aquello tengo que ir leyendo el archivo por id,nombre,tiempo_ms y dependencias por lo que separe cada uno con un : para guardar todo como en una estructura ,como una esecie de lista o actividad. Luego de hacer eso el id y nombre se guardaban automaticamente ,mientras que el tiempo se convertia en texto a numero con stoi y se ponia como mencione antes que si tenia vacio se generaba uno aleatoriamente ente 100 y 5000. Las dependencias como vienen juntas ,simplemente guardamso cada una poniendole entre medio una coma para asi guradarlas cada un a por separada en un vector
